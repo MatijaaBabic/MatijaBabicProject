@@ -139,7 +139,7 @@ class Player(pygame.sprite.Sprite):
         self.bullet.draw(screen)
 
     def shoot(self):
-        bullet = Bullet(self.rect.centerx, self.rect.top, self.orientation)
+        bullet = Bullet(self.rect.centerx, (self.rect.top + 15), self.orientation)
         self.bullet.add(bullet)
 
     def update_projectiles(self):
