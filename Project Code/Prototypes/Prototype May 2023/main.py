@@ -139,14 +139,15 @@ class Player(pygame.sprite.Sprite):
         self.bullet.draw(screen)
 
     def shoot(self):
-        bullet = Bullet(self.rect.centerx, (self.rect.top + 15), self.orientation)
+        bullet = Bullet(self.rect.centerx, (s elf.rect.top + 15), self.orientation)
         self.bullet.add(bullet)
 
     def update_projectiles(self):
-        self.bullet.update()
+        self.bullet.orient_bullet()
         for bullet in self.bullet.copy():
             if bullet.rect.bottom <= 0:
                 self.bullet.remove(bullet)
+                
     def get_teleport_direction(self):
         direction = [0, 0]
         control = pygame.key.get_pressed()
@@ -188,7 +189,7 @@ class Bullet(pygame.sprite.Sprite):
         self.orientation = orientation
 
     
-    def update(self):
+    def orient_bullet(self):
         if self.orientation == "up":
             self.rect.y -= self.speed
         elif self.orientation == "down":
@@ -209,7 +210,7 @@ done = True
 clock = pygame.time.Clock()
 
 while done:
-    screen.fill(CYAN)
+    screen.fill(BLACK) #Simulating the edge of the world
     player.draw(screen)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
