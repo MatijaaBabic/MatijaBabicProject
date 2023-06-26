@@ -164,7 +164,7 @@ class Player(pygame.sprite.Sprite):
     def get_teleport_destination(self):
         dest_x = self.rect.x + self.teleport_direction[0] * self.teleport_distance
         dest_y = self.rect.y + self.teleport_direction[1] * self.teleport_distance
-        dest_x = max(0, min(dest_x, self.screen_width))
+        dest_x = max(0, min(dest_x, self.screen_width)) #creates boundaries for what can the destination of a teleport be, preventing teleporting out of bounds
         dest_y = max(0, min(dest_y, self.screen_height))
         return dest_x, dest_y
 
@@ -209,7 +209,8 @@ done = True
 clock = pygame.time.Clock()
 
 while done:
-    screen.fill(CYAN)
+    screen.fill(CYAN)   #for demonstration purposes
+    #screen.fill(BLACK) #for actual use in game
     player.draw(screen)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
