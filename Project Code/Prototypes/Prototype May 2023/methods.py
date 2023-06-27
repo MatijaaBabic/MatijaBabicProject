@@ -5,6 +5,7 @@ import os
 from pygame import mixer
 import pygame_menu
 import math
+import time 
 os.chdir(r"C:\Users\Windows 10\Desktop\Microsoft\Prezentacije\Programs for school\Code\Github\MatijaBabicProject\Project Code\Prototypes\Prototype May 2023\Prototype Assets") #the working path of this prototype, where the assets are located
 # Basic colors defined here
 BLACK = (0, 0, 0)
@@ -44,6 +45,11 @@ class Player(pygame.sprite.Sprite):
             pygame.image.load("pup.png"),
             pygame.image.load("pleft.png"),
             pygame.image.load("pdown.png"),
+        ]
+        self.shot = [
+            pygame.image.load("shootup.png"),
+            pygame.image.load("shootleft.png"),
+            pygame.image.load("shootdown.png"),
         ]
         #array that stores pictures for the character turning
         self.movement = [[pygame.image.load("walkup1.png"), pygame.image.load("walkup2.png"), pygame.image.load("walkup3.png")],[pygame.image.load("walkleft1.png"), pygame.image.load("walkleft2.png"), pygame.image.load("walkleft3.png")],[pygame.image.load("walkdown1.png"), pygame.image.load("walkdown2.png"), pygame.image.load("walkdown3.png")]
@@ -159,7 +165,7 @@ class Player(pygame.sprite.Sprite):
 
         return direction
 
-    def get_teleport_destination(self):
+    def get_teleport_destination(self): #I utilized StackOverflow in order to get the most efficient version of this code, I afterwards logically tried to go through it to understand how it
         dest_x = self.rect.x + self.teleport_direction[0] * self.teleport_distance
         dest_y = self.rect.y + self.teleport_direction[1] * self.teleport_distance
         dest_x = max(0, min(dest_x, self.screen_width)) #creates boundaries for what can the destination of a teleport be, preventing teleporting out of bounds
